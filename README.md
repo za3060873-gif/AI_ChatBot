@@ -1,22 +1,21 @@
-# Java AI ChatBot 🤖
+# Java ChatBot (Rule-Based) 🤖
 
-A desktop chatbot application built with **Java Swing** for the GUI and powered by the **Anthropic Claude API** for real, intelligent conversation.
+A simple desktop chatbot built with **Java Swing**. This version works **fully offline** — no API key or internet connection required. It uses keyword matching to generate responses.
 
 ![Java](https://img.shields.io/badge/Java-11%2B-orange)
 ![Swing](https://img.shields.io/badge/GUI-Swing-blue)
-![Claude API](https://img.shields.io/badge/AI-Claude%20API-purple)
-![License](https://img.shields.io/badge/License-MIT-green)
+![Offline](https://img.shields.io/badge/Mode-Offline-lightgrey)
 
 ---
 
 ## 📖 Overview
 
-This project is a fully functional chatbot desktop application. Unlike simple rule-based bots, this app sends every user message to the **Claude API**, so responses are genuinely context-aware and intelligent — not just keyword matching.
+This project is a beginner-friendly, rule-based chatbot desktop application. It doesn't connect to any external AI service — instead, it matches keywords in the user's message against a predefined knowledge base and returns a relevant response.
 
-The app is built using clean, separated architecture:
+The app follows a clean, separated architecture:
 
 - `ChatMessage` → Data model for a single message
-- `ChatEngine` → Handles all AI/API logic
+- `ChatEngine` → Keyword-matching logic and response generation
 - `ChatBotGUI` → Swing-based user interface
 - `ChatBotApp` → Application entry point
 
@@ -24,12 +23,12 @@ The app is built using clean, separated architecture:
 
 ## ✨ Features
 
-- 💬 Real AI-powered responses via the Claude API
-- 🧠 Conversation memory — the bot remembers earlier messages in the session
-- ⚡ Non-blocking UI using `SwingWorker` (app never freezes while waiting for a reply)
-- 🎨 Clean, styled chat bubbles (user vs. bot)
-- 🔐 API key handled securely via environment variable (never hardcoded)
+- 💬 Keyword-based response matching (hello, name, time, java, bye, thanks, help, etc.)
+- 🧠 Remembers the user's name within the session (if they say "my name is...")
+- ⏱️ Simulated "thinking" delay using `javax.swing.Timer` for a more natural feel
+- 🎨 Styled chat bubbles — blue for user, green for bot
 - ⌨️ Send messages with the **Enter** key or the Send button
+- 📴 Works completely offline — no API key, no internet needed
 
 ---
 
@@ -39,8 +38,7 @@ The app is built using clean, separated architecture:
 |---|---|
 | Language | Java 11+ |
 | GUI Framework | Java Swing |
-| AI Backend | Anthropic Claude API |
-| Networking | `java.net.http.HttpClient` (built-in, no external libraries) |
+| Logic | Rule-based keyword matching (`HashMap`) |
 
 ---
 
@@ -48,38 +46,27 @@ The app is built using clean, separated architecture:
 
 ### Prerequisites
 - Java JDK 11 or higher installed
-- An Anthropic API key ([get one here](https://console.anthropic.com))
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/java-ai-chatbot.git
-cd java-ai-chatbot
+git clone https://github.com/your-username/java-chatbot.git
+cd java-chatbot
 ```
 
-### 2. Set your API key as an environment variable
-
-**Windows (PowerShell):**
-```powershell
-[System.Environment]::SetEnvironmentVariable("ANTHROPIC_API_KEY", "your-api-key-here", "User")
-```
-
-**Mac/Linux:**
-```bash
-export ANTHROPIC_API_KEY="your-api-key-here"
-```
-
-### 3. Compile and run
+### 2. Compile and run
 ```bash
 javac ChatBotApp.java
 java ChatBotApp
 ```
+
+That's it — no setup, no API keys, no environment variables needed.
 
 ---
 
 ## 📂 Project Structure
 
 ```
-java-ai-chatbot/
+java-chatbot/
 │
 ├── ChatBotApp.java     # Main application file (all classes)
 ├── README.md           # Project documentation
@@ -88,21 +75,18 @@ java-ai-chatbot/
 
 ---
 
-## 🔒 Security Note
+## ⚠️ Limitations
 
-This project reads the API key from an environment variable rather than storing it in source code. **Never commit your API key to GitHub.** If you fork this project, always use your own key via environment variables.
+Since this is a rule-based bot (not real AI), it can only respond to messages that contain one of its known keywords. Open-ended or unexpected questions will get a generic fallback reply: *"I'm not sure I understand. Could you rephrase that?"*
 
 ---
 
 ## 👩‍💻 Author
 
 **Sawera Fareed**
-Software Engineering student, building projects in Java, AI integration, and full-stack development.
+Software Engineering student, building projects in Java and GUI development.
 
-- GitHub: [your-github-link]
-- Portfolio: [your-portfolio-link]
 
----
 
 ## 📄 License
 
